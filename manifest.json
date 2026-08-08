@@ -1,0 +1,46 @@
+{
+  "manifest_version": 3,
+  "name": "HuntAI \u2014 AI Job Application Assistant",
+  "version": "1.0.0",
+  "key": "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAmZ+opmEeJDDfZlmTobzLlPnzxx2CP2SU3e0mPN2WfgBw7B2zJpEj7360UtGrnjoENaySyU7jk94PkcldH+PteoCJqY9oolN2cdDxFd/r+5XwzI1BqUqBE4NT5Z/JOqJB+jGuooLJeEWF3LoPMem1mQa9EDdJvaCcdJJiuDPLxUVHRDeP0aK8bLPKTyqUiCEhICKn5bvCckJU35xAOGiI+tHq/pbcV1UQxvcHoIoG0tjwWgzyDqL8vz/yjYd6IOOjcTrGwPIWjnUVIjo3/LXkJttiMIPfCChW/LTdSZ+X3z8IGo5HMrrDkQyonnhOhHV3YW2u2Co+14ktv7bVxovnkQIDAQAB",
+  "description": "Fill out job applications automatically using your HuntAI resume profile.",
+  "icons": {
+    "16": "icons/icon16.png",
+    "48": "icons/icon48.png",
+    "128": "icons/icon128.png"
+  },
+  "action": {
+    "default_popup": "popup.html",
+    "default_icon": "icons/icon48.png"
+  },
+  "background": {
+    "service_worker": "background.js"
+  },
+  "permissions": [
+    "storage",
+    "activeTab",
+    "scripting"
+  ],
+  "host_permissions": [
+    "https://huntai-backend.onrender.com/*"
+  ],
+  "content_scripts": [
+    {
+      "matches": [
+        "<all_urls>"
+      ],
+      "exclude_matches": [
+        "https://huntai-frontend.onrender.com/*"
+      ],
+      "js": [
+        "content.js"
+      ],
+      "run_at": "document_idle"
+    }
+  ],
+  "externally_connectable": {
+    "matches": [
+      "https://huntai-frontend.onrender.com/*"
+    ]
+  }
+}
